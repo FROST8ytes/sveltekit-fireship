@@ -2,4 +2,6 @@
 	import '../app.pcss';
 </script>
 
-<slot />
+<div class="flex min-h-screen flex-col">
+	<slot />
+</div>
