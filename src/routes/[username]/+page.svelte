@@ -1,5 +1,6 @@
 <script lang="ts">
 	import ProfileImage from '$lib/components/ProfileImage.svelte';
+	import UserLink from '$lib/components/UserLink.svelte';
 	import type { PageData } from './$types';
 	import 'iconify-icon';
 
@@ -12,7 +13,7 @@
 </svelte:head>
 
 <main class="prose mx-auto mt-8 text-center">
-	<h1 class="mb-6 text-5xl text-purple-500">
+	<h1 class="mb-6 text-4xl text-purple-500">
 		@{data.username}
 	</h1>
 
@@ -23,9 +24,9 @@
 	{/if}
 
 	<p class="my-8 text-xl">{data.bio ?? 'no bio yet...'}</p>
-	<ul class="list-none">
+	<ul class="my-12 list-none space-y-3">
 		{#each data.links as item}
-			{@debug item}
+			<UserLink {...item} />
 		{/each}
 	</ul>
 </main>

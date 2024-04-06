@@ -48,7 +48,7 @@
 				{
 					title: 'Test Link',
 					url: 'http://example.com/',
-					icon: 'custom'
+					icon: 'default'
 				}
 			]
 		});
