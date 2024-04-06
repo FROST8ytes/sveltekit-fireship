@@ -53,12 +53,12 @@
 				accept="image/png, image/jpeg, image/gif, image/webp"
 			/>
 
-			<!-- {#if uploading} -->
-			<div class="mt-3 flex w-full flex-col justify-center">
-				<p>Uploading...</p>
-				<progress class="progress progress-info mt-2 w-full" />
-			</div>
-			<!-- {/if} -->
+			{#if uploading}
+				<div class="mt-3 flex w-full flex-col justify-center">
+					<p>Uploading...</p>
+					<progress class="progress progress-info mt-2 w-full" />
+				</div>
+			{/if}
 			<div class="mt-6 flex w-full items-center justify-between">
 				<LogoLeadButton
 					icon="material-symbols:upload"
