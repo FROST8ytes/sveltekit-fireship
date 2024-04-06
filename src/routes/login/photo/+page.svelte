@@ -38,7 +38,9 @@
 	<form class="w-full max-w-screen-md" on:submit|preventDefault={upload}>
 		<div class="form-control mx-auto my-10 w-full max-w-xs text-center">
 			{#if previewURL || $userData?.photoURL}
-				<ProfileImage url={previewURL ?? $userData?.photoURL} />
+				<div>
+					<ProfileImage url={previewURL ?? $userData?.photoURL} />
+				</div>
 			{:else}
 				<iconify-icon class="mx-auto" width="256" height="256" icon="iconamoon:profile">
 				</iconify-icon>

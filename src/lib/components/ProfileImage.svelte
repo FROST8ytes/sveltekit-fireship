@@ -10,10 +10,14 @@
 	}
 </script>
 
-<img
-	src={getLargerGoogleProfileImage(url)}
-	alt="photoURL"
-	width="256"
-	height="256"
-	class="mx-auto"
-/>
+<div class="avatar">
+	<div class="w-64 rounded-3xl">
+		<img
+			src={getLargerGoogleProfileImage(url)}
+			alt="photoURL"
+			width="256"
+			height="256"
+			class="mx-auto"
+		/>
+	</div>
+</div>
