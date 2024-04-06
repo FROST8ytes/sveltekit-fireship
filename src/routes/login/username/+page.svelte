@@ -1,5 +1,7 @@
 <script lang="ts">
 	import AuthCheck from '$lib/components/AuthCheck.svelte';
+	import LogoLeadButton from '$lib/components/LogoLeadButton.svelte';
+	import NextStepButton from '$lib/components/NextStepButton.svelte';
 	import { db, user, userData } from '$lib/firebase';
 	import { doc, getDoc, writeBatch } from 'firebase/firestore';
 	import 'iconify-icon';
@@ -57,14 +59,11 @@
 
 <AuthCheck>
 	{#if $userData?.username}
-		<p class="text-success text-center">
+		<p class="text-center text-success">
 			Your username is <span class="font-bold">@{$userData.username}</span>
 		</p>
 		<p class="text-sm">(Usernames cannot be changed)</p>
-		<a class="btn btn-primary" href="/login/photo">
-			UPLOAD PROFILE IMAGE
-			<iconify-icon class="text-2xl" icon="formkit:submit"></iconify-icon>
-		</a>
+		<NextStepButton path="/login/photo" label="UPLOAD PROFILE IMAGE" />
 	{:else}
 		<form class="sm:w-4/5 lg:w-3/5" on:submit|preventDefault={confirmUsername}>
 			<input
@@ -76,6 +75,7 @@
 				class:input-error={!isValid && isTouched}
 				class:input-warning={isTaken}
 				class:input-success={isAvailable && isValid && !loading}
+				class:input-secondary={loading}
 			/>
 
 			<div class="my-4 min-h-16 w-full px-8">
@@ -84,19 +84,17 @@
 				{/if}
 
 				{#if !isValid && isTouched}
-					<p class="text-error text-sm">must be 3-16 characters long, alphanumeric only</p>
+					<p class="text-sm text-error">must be 3-16 characters long, alphanumeric only</p>
 				{/if}
 
 				{#if isValid && !isAvailable && !loading}
-					<p class="text-warning text-sm">
+					<p class="text-sm text-warning">
 						@{username} is not available
 					</p>
 				{/if}
 
 				{#if isAvailable}
-					<button class="btn btn-success">
-						CONFIRM USERNAME @{username}
-					</button>
+					<LogoLeadButton label={`CONFIRM USERNAME @${username}`} icon="line-md:confirm" />
 				{/if}
 			</div>
 		</form>
