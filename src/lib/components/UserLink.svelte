@@ -31,6 +31,7 @@
 
 <a
 	href={url}
+	target="_blank"
 	class="not-prose stack flex w-full max-w-md items-center justify-center rounded-lg bg-base-300 p-4 text-center no-underline"
 >
 	<iconify-icon icon={iconify} width="32" height="32" class="w-8"></iconify-icon>
