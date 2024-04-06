@@ -16,11 +16,11 @@
 
 	function setFile(e: any) {
 		file = e.target.files[0];
+		previewURL = URL.createObjectURL(file);
 	}
 
 	async function upload() {
 		uploading = true;
-		previewURL = URL.createObjectURL(file);
 		const storageRef = ref(storage, `users/${$user!.uid}/profile.png`);
 		const result = await uploadBytes(storageRef, file);
 		const url = await getDownloadURL(result.ref);
@@ -28,6 +28,7 @@
 		await updateDoc(doc(db, 'users', $user!.uid), { photoURL: url });
 		uploading = false;
 		uploaded = true;
+		file = null;
 	}
 </script>
 
