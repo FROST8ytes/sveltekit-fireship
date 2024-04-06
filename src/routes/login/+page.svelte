@@ -10,8 +10,6 @@
 	}
 </script>
 
-<h2>LOGIN</h2>
-
 {#if $user}
 	<h2 class="card-title">Welcome, {$user.displayName}!</h2>
 	<p class="text-success text-center">You are logged in.</p>
@@ -22,6 +20,6 @@
 {:else}
 	<button class="btn btn-primary" on:click={signInWithGoogle}>
 		<iconify-icon icon="bi:google"></iconify-icon>
-		Sign In with Google
+		SIGN IN WITH GOOGLE
 	</button>
 {/if}
