@@ -6,8 +6,23 @@
 
 	async function signInWithGoogle() {
 		const provider = new GoogleAuthProvider();
-		const user = await signInWithPopup(auth, provider);
-		console.log(user);
+		const credential = await signInWithPopup(auth, provider);
+
+		const idToken = await credential.user.getIdToken();
+
+		const res = await fetch('/api/signin', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+				// 'CSRF-Token': csrfToken // HANDLED by SvelteKit automatically
+			},
+			body: JSON.stringify({ idToken })
+		});
+	}
+
+	async function signOutSSR() {
+		const res = await fetch('/api/signin', { method: 'DELETE' });
+		await signOut(auth);
 	}
 </script>
 
@@ -15,7 +30,7 @@
 	<h2 class="card-title">Welcome, {$user.displayName}!</h2>
 	<p class="text-center text-success">You are logged in.</p>
 	<div class="mt-6 flex w-full justify-between">
-		<button class="btn btn-warning" on:click={() => signOut(auth)}>
+		<button class="btn btn-warning" on:click={signOutSSR}>
 			<iconify-icon class="text-2xl" icon="uis:signout"></iconify-icon>
 			SIGN OUT
 		</button>
