@@ -58,11 +58,49 @@
 		const userRef = doc(db, 'users', $user!.uid);
 		setDoc(userRef, { links: newList }, { merge: true });
 	}
+
+	async function toggleProfileStatus(item: any) {
+		const userRef = doc(db, 'users', $user!.uid);
+		await updateDoc(userRef, {
+			published: !$userData?.published
+		});
+	}
 </script>
 
 <main class="mx-auto max-w-xl">
 	{#if $userData?.username == $page.params.username}
 		<h1 class="mx-2 mb-4 mt-8 text-center text-2xl font-bold">Edit your profile</h1>
+		<div class="mb-8 text-center">
+			<p>
+				Profile Link: <a href={`/${$userData?.username}`} class="link link-accent">
+					{`${$page.url.protocol}//${$page.url.hostname}/${$userData?.username}`}
+				</a>
+			</p>
+		</div>
+
+		<div class="my-4 text-center">
+			<a href="/login/photo" class="btn btn-outline btn-xs">Change Photo</a>
+			<a href={`/${$userData.username}/bio`} class="btn btn-outline btn-xs">Edit Bio</a>
+		</div>
+
+		<form class="form-control">
+			<label class="label flex cursor-pointer items-start justify-center">
+				<span class="label-text mr-6">
+					<div
+						class="tooltip group-hover:tooltip-open"
+						data-tip="If public, the world can see your profile"
+					>
+						{$userData?.published ? 'Public profile' : 'Private profile'}
+					</div>
+				</span>
+				<input
+					type="checkbox"
+					class="toggle toggle-success"
+					checked={$userData?.published}
+					on:change={toggleProfileStatus}
+				/>
+			</label>
+		</form>
 
 		<SortableList list={$userData?.links} on:sort={sortList} let:item let:index>
 			<div class="group relative">
