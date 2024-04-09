@@ -8,6 +8,7 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 	const expiresIn = 60 * 60 * 24 * 5 * 1000; // 5 days
 
 	const decodedIdToken = await adminAuth.verifyIdToken(idToken);
+	console.log(decodedIdToken);
 
 	try {
 		const cookie = await adminAuth.createSessionCookie(idToken, { expiresIn });
@@ -15,6 +16,7 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 		cookies.set('__session', cookie, options);
 		return json({ status: 'signedIn' });
 	} catch (e: any) {
+		console.error(e);
 		throw error(401, 'Recent sign in required!');
 	}
 };
