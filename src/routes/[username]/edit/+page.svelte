@@ -8,13 +8,13 @@
 
 	const icons = ['Twitter', 'YouTube', 'TikTok', 'LinkedIn', 'GitHub', 'Default'];
 
-	const formDefaults: { icon: string | null; title: string; url: string } = {
-		icon: null,
+	const formDefaults: { icon: string; title: string; url: string } = {
+		icon: 'default',
 		title: '',
 		url: 'https://'
 	};
 
-	const formData = writable(formDefaults);
+	const formData = writable({ ...formDefaults });
 
 	let showForm = false;
 
@@ -32,11 +32,7 @@
 			})
 		});
 
-		formData.set({
-			icon: null,
-			title: '',
-			url: ''
-		});
+		formData.set({ ...formDefaults });
 
 		showForm = false;
 	}
@@ -49,7 +45,7 @@
 	}
 
 	function cancelLink() {
-		formData.set(formDefaults);
+		formData.set({ ...formDefaults });
 		showForm = false;
 	}
 

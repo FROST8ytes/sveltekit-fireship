@@ -5,13 +5,12 @@ import { getStorage } from 'firebase/storage';
 import { derived, writable, type Readable } from 'svelte/store';
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyA_3hH93KQvC-4CkDQrM-HKHpGamVoG5o4',
-	authDomain: 'sveltekit-fireship-420.firebaseapp.com',
-	projectId: 'sveltekit-fireship-420',
-	storageBucket: 'sveltekit-fireship-420.appspot.com',
-	messagingSenderId: '556361996726',
-	appId: '1:556361996726:web:ac4547ba9aa85352908917',
-	measurementId: 'G-0JM9PPL3D5'
+	apiKey: 'AIzaSyB7l6Oi-muRZBPoCSEK5W5mVfK7H8-NuSc',
+	authDomain: 'sveltekit-fireship-42069.firebaseapp.com',
+	projectId: 'sveltekit-fireship-42069',
+	storageBucket: 'sveltekit-fireship-42069.appspot.com',
+	messagingSenderId: '325763415841',
+	appId: '1:325763415841:web:e989bab303b5764d058860'
 };
 
 export const app = initializeApp(firebaseConfig);
